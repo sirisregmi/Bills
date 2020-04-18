@@ -1,0 +1,45 @@
+{% extends "base-site.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="row">
+  {% if current_user.roles == 'SUPER' %}
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-header card-header-warning card-header-icon">
+        <div class="card-icon">
+          <i class="material-icons">money</i>
+        </div>
+        <p class="card-category">Add Services</p>
+        <h3 class="card-title">{{credit}}
+          <small>MMK</small>
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-header card-header-success card-header-icon">
+        <div class="card-icon">
+          <a href = '/users/create'>
+          <i class="material-icons">person_add</i></a>
+        </div>
+        <p class="card-category">Add Users</p>
+       
+      </div>
+      
+    </div>
+  </div>
+  {%endif%}
+</div>
+
+{% endblock content %}
+
+{% block javascripts %}
+
+{% endblock javascripts %}

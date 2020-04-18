@@ -1,7 +1,3 @@
-"""
-
-"""
-
 from flask import Flask, url_for
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
@@ -17,9 +13,10 @@ def register_extensions(app):
     login_manager.init_app(app)
 
 def register_blueprints(app):
-    for module_name in ('base', 'home','employee','bills'):
+    for module_name in ('base','home'):
         module = import_module('app.{}.routes'.format(module_name))
         app.register_blueprint(module.blueprint)
+
 
 def configure_database(app):
     @app.before_first_request
@@ -71,11 +68,10 @@ def apply_themes(app):
 def create_app(config, selenium=False):
     app = Flask(__name__, static_folder='base/static')
     app.config.from_object(config)
-    if selenium:
-        app.config['LOGIN_DISABLED'] = True
+    
     register_extensions(app)
     register_blueprints(app)
     configure_database(app)
-    configure_logs(app)
-    apply_themes(app)
+    #configure_logs(app)
+    
     return app
